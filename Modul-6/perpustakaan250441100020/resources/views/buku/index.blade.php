@@ -91,7 +91,10 @@
 
     const bolehKelolaBuku = @json(auth() -> user() -> can('kelola-buku'));
 
-    const bolehMengajukan = @json(auth() -> user() -> can('mengajukan peminjaman buku'));
+    const bolehMengajukan = @json(
+        auth()->user()->can('mengajukan peminjaman buku')
+        && auth()->user()->anggota !== null
+    );
 
     const formBuku = document.getElementById('form-buku');
     const pilihanKategori = document.getElementById('kategori_id');
